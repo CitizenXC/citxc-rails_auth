@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(create_user_params)
-
+    byebug
     if @user.save
       @user.send_confirmation_email!
       redirect_to root_path, notice: "Please check your email for confirmation instructions."
