@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+      @user = User.new
   end
 
   def destroy
@@ -38,7 +38,7 @@ class UsersController < ApplicationController
         else
           redirect_to root_path, notice: "Account updated."
         end
-        
+
       else
         render :edit, status: :unprocessable_entity
       end
@@ -59,4 +59,5 @@ class UsersController < ApplicationController
   def update_user_params
     params.require(:user).permit(:current_password, :password,
                                  :password_confirmation, :unconfirmed_email)
+  end
 end
