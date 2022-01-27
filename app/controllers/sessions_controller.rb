@@ -10,8 +10,10 @@ class SessionsController < ApplicationController
         redirect_to new_confirmation_path,
           alert: "You must confirm your email before you can sign in."
       elsif @user.authenticate(params[:user][:password])
+        after_login_path = session[:user_return_to] || root_path
         login @user
         remember(@user) if params[:user][:remember_me] == "1"
+        redirect_to after_login_path, notice: "Signed in."
       else
         flash.now[:alert] = "Incorrect email or password."
         render :new
